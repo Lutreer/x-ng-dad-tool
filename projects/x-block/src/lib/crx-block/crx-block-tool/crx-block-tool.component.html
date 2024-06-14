@@ -1,0 +1,177 @@
+<div class="root" [style.width.px]="size.width">
+  <div
+    class="material-container"
+    [style.height.px]="size.height"
+    [class.hide-materials-container]="!materialsShow"
+  >
+    <div class="material-title">
+      物料区
+      <mat-icon (click)="materialsShow = !materialsShow" class="fold"
+        >keyboard_double_arrow_left</mat-icon
+      >
+    </div>
+    <div class="material-list">
+      <div
+        matRipple
+        class="material-item"
+        draggable="true"
+        [id]="item.key"
+        *ngFor="let item of materials | keyvalue"
+        (dragstart)="onDrag($event)"
+      >
+        {{ item.value.title }}
+      </div>
+    </div>
+    <div class="drag-preview">
+      <div
+        *ngFor="let item of materials | keyvalue"
+        class="preview-item-box"
+        [id]="item.key + '_preview'"
+      >
+        <ng-container *ngComponentOutlet="item.value.component"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div
+    #targetElementRef
+    id="target"
+    class="result-container"
+    (drop)="onDrop($event)"
+    (dragover)="onDragover($event)"
+    [style.width.px]="size.width"
+    [style.height.px]="size.height"
+  >
+    <div class="subline subline-top" #sublineTopRef></div>
+    <div class="subline subline-right" #sublineRightRef></div>
+    <div class="subline subline-bottom" #sublineBottomRef></div>
+    <div class="subline subline-left" #sublineLeftRef></div>
+
+    @for (item of layoutData | keyvalue; track item.key) {
+      <div
+        cdkDrag
+        (cdkDragMoved)="onDragMoved($event)"
+        (cdkDragEnded)="onDragEnded($event)"
+        cdkDragBoundary=".result-container"
+        #resultsRef
+        class="item item-box"
+        [style.width.px]="item.value.size.width"
+        [style.height.px]="item.value.size.height"
+        [style.top.px]="item.value.position.top || 0"
+        [style.left.px]="item.value.position.left || 0"
+        [style.z-index]="item.value.layer || 0"
+        [id]="item.key"
+      >
+        <div class="action-box">
+          <div
+            class="del"
+            (click)="onDelelte($event, item.key)"
+            matTooltip="删除组件"
+            matTooltipPosition="above"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </div>
+          <div
+            class="edit"
+            (click)="onShowConfigBox($event, item.key)"
+            matTooltip="更多设置"
+            matTooltipPosition="above"
+          >
+            <mat-icon>tune</mat-icon>
+          </div>
+        </div>
+        <div class="component-box">
+          <div
+            class="component-cover _draggable"
+            [class.component-cover-active]="cfgBlockActiveId == item.key"
+            cdkDragHandle
+            [id]="item.key + '_pure'"
+            (mouseover)="onHover($event)"
+            (mouseout)="onHoverOut($event)"
+            [cdkContextMenuTriggerFor]="targetEditMenu"
+            (cdkContextMenuOpened)="rightmenuSelectedItem = item"
+          ></div>
+          <div class="handle top-left"></div>
+          <div class="handle top"></div>
+          <div class="handle top-right"></div>
+          <div class="handle right"></div>
+          <div class="handle bottom-right"></div>
+          <div class="handle bottom"></div>
+          <div class="handle bottom-left"></div>
+          <div class="handle left"></div>
+
+          <!-- TODO 正确隐藏resize图标 -->
+          <div class="resize" #resizableRef (mousedown)="onResizeMousedown($event, item.key)"></div>
+          <ng-container
+            *ngComponentOutlet="
+              getComponent(item.value.component);
+              inputs: getComponentProps(item.key)
+            "
+          ></ng-container>
+        </div>
+      </div>
+    }
+
+    <ng-template #targetEditMenu>
+      <div class="target-edit-menu" cdkMenu>
+        <div
+          class="target-edit-menu-item"
+          cdkMenuItem
+          (click)="onShowConfigBox($event, rightmenuSelectedItem!.key)"
+        >
+          <mat-icon>tune</mat-icon>更多设置
+        </div>
+        <div
+          class="target-edit-menu-item"
+          cdkMenuItem
+          (click)="onMoveLayerUp(rightmenuSelectedItem!.key)"
+        >
+          <mat-icon>file_upload</mat-icon>上移一层
+        </div>
+        <div
+          class="target-edit-menu-item"
+          cdkMenuItem
+          (click)="onMoveLayerDown(rightmenuSelectedItem!.key)"
+        >
+          <mat-icon>download</mat-icon>下移一层
+        </div>
+        <div
+          class="target-edit-menu-item"
+          cdkMenuItem
+          (click)="onDelelte($event, rightmenuSelectedItem!.key)"
+        >
+          <mat-icon>delete_forever</mat-icon>删除组件
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div
+    class="config-container"
+    [class.hide-config-container]="!cfgShow"
+    [style.height.px]="size.height"
+  >
+    <div class="config-title">
+      配置区
+      <mat-icon class="close" (click)="onHideConfigBox()">highlight_off</mat-icon>
+    </div>
+    <div class="config-form">
+      <form [formGroup]="coForm" *ngIf="cuFields && coFields">
+        <formly-form
+          [form]="coForm"
+          [fields]="coFields"
+          [model]="coModel"
+          [options]="{}"
+        ></formly-form>
+      </form>
+      <form [formGroup]="cuForm" *ngIf="cuFields">
+        <formly-form
+          [form]="cuForm"
+          [fields]="cuFields"
+          [model]="cuModel"
+          [options]="{}"
+        ></formly-form>
+      </form>
+    </div>
+  </div>
+</div>

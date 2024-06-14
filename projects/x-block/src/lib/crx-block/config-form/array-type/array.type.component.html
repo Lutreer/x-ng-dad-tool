@@ -1,0 +1,33 @@
+<div class="mb-3">
+  <div class="form-field-label" (click)="toggleExpandAction()">
+    <legend *ngIf="to.label">{{ to.label }}</legend>
+    <div class="form-field-label-right">
+      <span class="count-number">共{{ field.fieldGroup!.length }}条</span
+      ><i class="material-icons">{{ !isExpand ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</i>
+    </div>
+  </div>
+  <div *ngIf="isExpand" [@toggleExpand]="isExpand ? 'expand' : 'fold'">
+    <div
+      class="formly formly-validation-danger"
+      role="alert"
+      *ngIf="showError && formControl.errors"
+    >
+      <formly-validation-message [field]="field"></formly-validation-message>
+    </div>
+
+    <div class="rows">
+      <div *ngFor="let fieldItem of field.fieldGroup; let i = index" class="row">
+        <div class="item">
+          <formly-field
+            style="z-index: 1"
+            class="col-10 formly-field-array-item"
+            [field]="fieldItem"
+          ></formly-field>
+          <app-delete-widget class="delete-btn" (click)="remove(i)"></app-delete-widget>
+        </div>
+      </div>
+      <div *ngIf="field.fieldGroup!.length === 0" class="empty-data">暂无数据</div>
+    </div>
+  </div>
+  <div *ngIf="!isExpand" [@toggleExpand]="isExpand ? 'expand' : 'fold'"></div>
+</div>

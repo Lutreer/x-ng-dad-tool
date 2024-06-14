@@ -1,0 +1,27 @@
+.delete-btn {
+  background-color: #ffffff;
+  border-radius: 15px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  color: #f1594d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    font-size: 16px;
+  }
+
+  &:hover {
+    background-color: #fff8f7;
+    animation: shake 0.2s ease-in-out infinite alternate;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}

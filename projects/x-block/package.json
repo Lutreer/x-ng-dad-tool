@@ -1,0 +1,21 @@
+{
+  "name": "x-block",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/animations": "^17.1.0",
+    "@angular/cdk": "^17.3.8",
+    "@angular/common": "^17.1.0",
+    "@angular/compiler": "^17.1.0",
+    "@angular/core": "^17.1.0",
+    "@angular/forms": "^17.3.11",
+    "@angular/material": "^17.3.8",
+    "@ngx-formly/core": "^6.3.4",
+    "@ngx-formly/ng-zorro-antd": "^6.3.4",
+    "rxjs": "~7.8.0",
+    "json-pointer": "^0.6.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
