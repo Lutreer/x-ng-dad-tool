@@ -1,0 +1,24 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2024-05-22
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2025-05-08
+ * @Description    :
+ * Copyright (c) 2024 by Crepri, All Rights Reserved.
+-->
+<div class="mb-3" [style.display]="field.templateOptions?.['display']">
+  <div class="form-field-label" (click)="toggleExpandAction()">
+    {{ to.label || '-' }}
+    <div class="form-field-label-right">
+      <span class="description" *ngIf="to.description">{{ descrption }}</span>
+      <span [class.expand-rotate]="!isExpand" nz-icon nzType="caret-down" nzTheme="outline"></span>
+    </div>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="showError && formControl.errors">
+    <formly-validation-message [field]="field"></formly-validation-message>
+  </div>
+  <div class="form-field-content" [@toggleExpand]="isExpand ? 'expand' : 'fold'">
+    <formly-field *ngFor="let f of field.fieldGroup" [field]="f"></formly-field>
+    <div *ngIf="field.fieldGroup!.length === 0" class="empty-data">暂无数据</div>
+  </div>
+</div>

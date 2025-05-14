@@ -1,0 +1,26 @@
+.text-container {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+}
+
+.text-content {
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+a.text-content {
+  &:hover {
+    text-decoration: underline;
+  }
+}

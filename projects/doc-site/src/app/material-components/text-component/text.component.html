@@ -1,0 +1,41 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2024-05-15
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2025-05-14
+ * @Description    : Customizable text component template
+ * Copyright (c) 2024 by Crepri, All Rights Reserved.
+-->
+<div
+  class="text-container"
+  [style.background-color]="backgroundColor"
+  [style.border-color]="borderColor"
+  [style.border-width.px]="borderWidth"
+  [style.border-style]="borderStyle"
+  [style.align-items]="verticalAlign"
+  [style.justify-content]="horizontalAlign"
+>
+  <ng-container *ngIf="isLink; else normalText">
+    <a
+      [href]="linkUrl"
+      [style.font-size.px]="fontSize"
+      [style.color]="fontColor"
+      [style.font-weight]="fontWeight"
+      [style.font-style]="isItalic ? 'italic' : 'normal'"
+      class="text-content"
+    >
+      {{ content }}
+    </a>
+  </ng-container>
+  <ng-template #normalText>
+    <div
+      [style.font-size.px]="fontSize"
+      [style.color]="fontColor"
+      [style.font-weight]="fontWeight"
+      [style.font-style]="isItalic ? 'italic' : 'normal'"
+      class="text-content"
+    >
+      {{ content }}
+    </div>
+  </ng-template>
+</div>

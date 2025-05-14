@@ -1,38 +1,403 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2024-06-11
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2025-05-12
+ * @Description    :
+ * Copyright (c) 2024 by Crepri, All Rights Reserved.
+-->
 
-<style>
+<style></style>
 
-</style>
-
-
-<crx-block-tool
+<x-block-tool
   [size]="{ width: 1600, height: 1000 }"
   [layoutData]="{
-    '1715592801616': {
-      component: 'crx-block-component2',
+    background_card: {
+      component: 'crx-block-card',
       position: {
-        top: 300,
-        left: 800
+        top: 20,
+        left: 20,
       },
       size: {
-        width: 200,
-        height: 200
+        width: 1560,
+        height: 960,
       },
-      layer: 10
+      layer: 10,
+      props: {
+        headerColor: '#0F172A',
+        title: '',
+        contentBgColor: '#1E293B',
+      },
     },
-    '1715417993608': {
-      component: 'crx-block-component1',
+    header_card: {
+      component: 'crx-block-card',
       position: {
-        top: 455,
-        left: 991
+        top: 20,
+        left: 20,
       },
       size: {
-        width: 290,
-        height: 300
+        width: 1560,
+        height: 80,
       },
       layer: 20,
       props: {
-        a: 'r2r23'
-      }
-    }
+        headerColor: '#0F172A',
+        title: '数据监控中心',
+        titleColor: '#E2E8F0',
+        titleSize: 24,
+        contentBgColor: '#1E293B',
+      },
+    },
+    overview_text: {
+      component: 'crx-block-text',
+      position: {
+        top: 120,
+        left: 20,
+      },
+      size: {
+        width: 1560,
+        height: 40,
+      },
+      layer: 20,
+      props: {
+        content: '实时数据概览',
+        fontSize: 20,
+        fontColor: '#E2E8F0',
+        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+      },
+    },
+    student_info_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 180,
+        left: 20,
+      },
+      size: {
+        width: 500,
+        height: 250,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '学生信息',
+        titleColor: '#E2E8F0',
+        titleSize: 18,
+        contentBgColor: '#334155',
+      },
+    },
+    student_info_table: {
+      component: 'crx-block-table',
+      position: {
+        top: 220,
+        left: 20,
+      },
+      size: {
+        width: 500,
+        height: 210,
+      },
+      layer: 30,
+      dataSource: {
+        type: 'HTTP',
+        url: 'https://192.168.102.234/api/stations/1/devices',
+      },
+      props: {
+        columns: [
+          { header: '学号', field: 'station_id' },
+          { header: '姓名', field: 'device_code' },
+          { header: '性别', field: 'gender' },
+          { header: '年龄', field: 'age' },
+          { header: '班级', field: 'class' },
+          { header: '联系电话', field: 'phone' },
+        ],
+      },
+    },
+    chart_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 180,
+        left: 540,
+      },
+      size: {
+        width: 500,
+        height: 250,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '数据统计',
+        titleColor: '#E2E8F0',
+        titleSize: 18,
+        contentBgColor: '#334155',
+      },
+    },
+    bar_chart: {
+      component: 'crx-block-bar-chart',
+      position: {
+        top: 220,
+        left: 540,
+      },
+      size: {
+        width: 500,
+        height: 210,
+      },
+      layer: 30,
+      dataSource: {
+        type: 'HTTP',
+        url: 'https://192.168.102.234/api2/region/stations/indicators/power-generation/current-year',
+      },
+      props: {
+        data: [{ title: '类别A', namePath: '$..StationCode', valuePath: '$..PowerGeneration' }],
+      },
+    },
+    status_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 180,
+        left: 1060,
+      },
+      size: {
+        width: 500,
+        height: 250,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '系统状态',
+        titleColor: '#E2E8F0',
+        titleSize: 18,
+        contentBgColor: '#334155',
+      },
+    },
+    status_text: {
+      component: 'crx-block-text',
+      position: {
+        top: 220,
+        left: 1060,
+      },
+      size: {
+        width: 500,
+        height: 210,
+      },
+      layer: 30,
+      props: {
+        content: '系统运行正常\nCPU使用率: 45%\n内存使用率: 60%\n磁盘使用率: 75%',
+        fontSize: 16,
+        fontColor: '#E2E8F0',
+        fontWeight: 'normal',
+        backgroundColor: 'transparent',
+      },
+    },
+    schedule_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 450,
+        left: 20,
+      },
+      size: {
+        width: 500,
+        height: 360,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '实时数据',
+        titleColor: '#E2E8F0',
+        titleSize: 18,
+        contentBgColor: '#334155',
+      },
+    },
+    schedule_table: {
+      component: 'crx-block-table',
+      position: {
+        top: 490,
+        left: 20,
+      },
+      size: {
+        width: 500,
+        height: 320,
+      },
+      layer: 30,
+      dataSource: {
+        type: 'SSE',
+        url: 'https://192.168.102.234/api2/region/stations/indicators/live?interval=5',
+      },
+      props: {
+        columns: [
+          { header: '站点编号', field: 'StationCode' },
+          { header: '风速', field: 'WindSpeed1(mean)' },
+          { header: '电网功率', field: 'GridsideActivePower(sum)' },
+          { header: '日发电量', field: 'DailyEnergyProduction(sum)' },
+          { header: '状态', field: 'status' },
+        ],
+      },
+    },
+    teacher_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 450,
+        left: 540,
+      },
+      size: {
+        width: 500,
+        height: 360,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '教师信息',
+        titleColor: '#E2E8F0',
+        titleSize: 18,
+        contentBgColor: '#334155',
+      },
+    },
+    teacher_info_table: {
+      component: 'crx-block-table',
+      position: {
+        top: 490,
+        left: 540,
+      },
+      size: {
+        width: 500,
+        height: 320,
+      },
+      layer: 30,
+      dataSource: {
+        type: 'SSE',
+        url: 'https://192.168.102.234/api2/region/stations/indicators/live?interval=5',
+      },
+      props: {
+        columns: [
+          { header: '教师编号', field: 'StationCode' },
+          { header: '姓名', field: 'WindSpeed1(mean)' },
+          { header: '性别', field: 'GridsideActivePower(sum)' },
+          { header: '任教科目', field: 'DailyEnergyProduction(sum)' },
+          { header: '联系电话', field: 'phone' },
+        ],
+      },
+    },
+    footer_card: {
+      component: 'crx-block-card',
+      position: {
+        top: 840,
+        left: 20,
+      },
+      size: {
+        width: 1560,
+        height: 120,
+      },
+      layer: 20,
+      props: {
+        headerColor: '#0F172A',
+        title: '',
+        contentBgColor: '#334155',
+      },
+    },
+    footer_text: {
+      component: 'crx-block-text',
+      position: {
+        top: 860,
+        left: 40,
+      },
+      size: {
+        width: 1520,
+        height: 80,
+      },
+      layer: 30,
+      props: {
+        content: '© 2024 数据监控中心 - 实时数据更新',
+        fontSize: 14,
+        fontColor: '#94A3B8',
+        fontWeight: 'normal',
+        backgroundColor: 'transparent',
+      },
+    },
   }"
-></crx-block-tool>
+></x-block-tool>
+
+<!-- student_grades_table: {
+  component: 'crx-block-table',
+  position: {
+    top: 50,
+    left: 540,
+  },
+  size: {
+    width: 500,
+    height: 250,
+  },
+  layer: 20,
+  props: {
+    columns: [
+      { header: '学号', field: 'studentId' },
+      { header: '姓名', field: 'name' },
+      { header: '语文', field: 'chinese' },
+      { header: '数学', field: 'math' },
+      { header: '英语', field: 'english' },
+      { header: '物理', field: 'physics' },
+      { header: '化学', field: 'chemistry' },
+    ],
+  },
+},
+attendance_table: {
+  component: 'crx-block-table',
+  position: {
+    top: 50,
+    left: 1060,
+  },
+  size: {
+    width: 500,
+    height: 250,
+  },
+  layer: 30,
+  props: {
+    columns: [
+      { header: '学号', field: 'studentId' },
+      { header: '姓名', field: 'name' },
+      { header: '日期', field: 'date' },
+      { header: '状态', field: 'status' },
+      { header: '备注', field: 'note' },
+    ],
+  },
+},
+activity_table: {
+  component: 'crx-block-table',
+  position: {
+    top: 350,
+    left: 1060,
+  },
+  size: {
+    width: 500,
+    height: 250,
+  },
+  layer: 60,
+  props: {
+    columns: [
+      { header: '活动名称', field: 'name' },
+      { header: '时间', field: 'time' },
+      { header: '地点', field: 'location' },
+      { header: '负责人', field: 'leader' },
+      { header: '参与人数', field: 'participants' },
+    ],
+  },
+},
+discipline_table: {
+  component: 'crx-block-table',
+  position: {
+    top: 650,
+    left: 20,
+  },
+  size: {
+    width: 500,
+    height: 250,
+  },
+  layer: 70,
+  props: {
+    columns: [
+      { header: '学号', field: 'studentId' },
+      { header: '姓名', field: 'name' },
+      { header: '日期', field: 'date' },
+      { header: '类型', field: 'type' },
+      { header: '描述', field: 'description' },
+    ],
+  },
+}, -->

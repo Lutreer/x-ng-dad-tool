@@ -1,0 +1,14 @@
+.frame {
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.x-icon {
+  svg {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+}

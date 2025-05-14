@@ -2,40 +2,37 @@
  * @Author         : Shang
  * @Date           : 2024-06-12
  * @LastEditors    : Shang
- * @LastEditTime   : 2024-06-13
+ * @LastEditTime   : 2025-05-12
  * @Description    :
  * Copyright (c) 2024 by Crepri, All Rights Reserved.
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 import { AppComponent } from './app.component';
-import { MatButtonModule } from '@angular/material/button';
-import { CrxBlockModule, XBlockComponent } from '../../../x-block/src/public-api';
-import { Component1xComponent } from './material-components/component1x/component1x.component';
-import { Component1Component } from './material-components/component1/component1.component';
-import { Component2Component } from './material-components/component2/component2.component';
-
+import { XBlockModule } from '../../../x-block/src/public-api';
+import { TableComponent } from './material-components/table/table.component';
+import { BarChartComponent } from './material-components/bar-chart/bar-chart.component';
+import { CardComponent } from './material-components/card-component/card.component';
+import { TextComponent } from './material-components/text-component/text.component';
+// import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// import { provideHttpClient } from '@angular/common/http';
 @NgModule({
-    declarations: [
-        AppComponent,
-        Component1xComponent,
-        Component1Component,
-        Component2Component
-        // 其他组件
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        XBlockComponent,
-
-
-        CrxBlockModule.forRoot(),
-
-    ]
+  declarations: [
+    AppComponent,
+    TableComponent,
+    BarChartComponent,
+    CardComponent,
+    TextComponent,
+    // 其他组件
+  ],
+  // providers: [
+  //   provideAnimationsAsync(),
+  //   provideHttpClient()
+  // ],
+  bootstrap: [AppComponent],
+  imports: [BrowserModule, BrowserAnimationsModule, XBlockModule.forRoot(), NzTableModule],
 })
-export class AppModule { }
+export class AppModule {}

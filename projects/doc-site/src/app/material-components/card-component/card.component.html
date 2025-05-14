@@ -1,0 +1,18 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2024-05-15
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2024-05-27
+ * @Description    : Customizable card component template
+ * Copyright (c) 2024 by Crepri, All Rights Reserved.
+-->
+<div class="card">
+  <div class="card-header" [style.background-color]="headerColor">
+    <h2 class="card-title" [style.color]="titleColor" [style.font-size.px]="titleSize">
+      {{ title }}
+    </h2>
+  </div>
+  <div class="card-content" [style.background-color]="contentBgColor">
+    <ng-content></ng-content>
+  </div>
+</div>

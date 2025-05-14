@@ -1,0 +1,28 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2025-04-30
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2025-05-09
+ * @Description    :  
+ * Copyright (c) 2025 by Crepri, All Rights Reserved. 
+-->
+<div #container class="table-container">
+  <nz-table
+    #basicTable
+    [nzData]="dataSource"
+    [nzScroll]="{ y: scrollHeight + 'px' }"
+    [nzShowPagination]="false"
+    nzSize="small"
+  >
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns">{{ col.header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of dataSource">
+        <td *ngFor="let col of columns">{{ row[col.field] }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

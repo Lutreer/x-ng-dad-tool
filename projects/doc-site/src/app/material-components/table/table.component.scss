@@ -1,0 +1,27 @@
+.table-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+:host ::ng-deep .ant-table {
+  background: #101a2a;
+  color: #e6f0ff;
+}
+:host ::ng-deep .ant-table-thead > tr > th {
+  background: #162447;
+  color: #e6f0ff;
+  border-color: #23395d;
+  font-weight: 800;
+}
+:host ::ng-deep .ant-table-tbody > tr > td {
+  background: #101a2a;
+  color: #e6f0ff;
+  border-color: #23395d;
+}
+:host ::ng-deep .ant-table-tbody > tr:nth-child(even) > td {
+  background: #142042;
+}
+:host ::ng-deep .ant-table-tbody > tr:hover > td {
+  background: #23395d;
+}

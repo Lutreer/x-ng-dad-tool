@@ -1,0 +1,46 @@
+<!--
+ * @Author         : Shang
+ * @Date           : 2025-05-08
+ * @LastEditors    : Shang
+ * @LastEditTime   : 2025-05-09
+ * @Description    :  
+ * Copyright (c) 2025 by Crepri, All Rights Reserved. 
+-->
+<div class="mb-3">
+  <div class="form-field-label" (click)="toggleExpandAction()">
+    {{ to.label || '-' }}
+    <div class="form-field-label-right">
+      <span class="description" *ngIf="to.description">{{ to.description }}</span>
+      <span [class.expand-rotate]="!isExpand" nz-icon nzType="caret-down" nzTheme="outline"></span>
+    </div>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="showError && formControl.errors">
+    <!-- <formly-validation-message [field]="field"></formly-validation-message> -->
+  </div>
+  <div class="form-field-content" [@toggleExpand]="isExpand ? 'expand' : 'fold'">
+    <!-- <formly-field *ngFor="let f of field.fieldGroup" [field]="f"></formly-field> -->
+    <div>接口类型:</div>
+    <nz-select [(ngModel)]="protocol" (ngModelChange)="onProtocolChange()" style="width: 100%">
+      <nz-option nzValue="SSE" nzLabel="实时数据"></nz-option>
+      <nz-option nzValue="HTTP" nzLabel="非实时数据"></nz-option>
+    </nz-select>
+    <div>接口地址:</div>
+    <nz-input-group>
+      <input
+        type="text"
+        nz-input
+        [(ngModel)]="apiPath"
+        placeholder="例:https://www.example.com/path"
+        (ngModelChange)="onApiPathChange()"
+      />
+    </nz-input-group>
+    <div>
+      <textarea
+        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+        nz-input
+        readonly
+        [(ngModel)]="apiResponse"
+      ></textarea>
+    </div>
+  </div>
+</div>

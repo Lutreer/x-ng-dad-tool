@@ -1,29 +1,27 @@
-@use '@angular/material' as mat;
-@include mat.core();
+// TODO X add style
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '~material-design-icons-iconfont/src/material-design-icons';
+@import "ng-zorro-antd/ng-zorro-antd.min.css";
+// @import 'material-design-icons-iconfont/src/material-design-icons';
+
+// @use '@angular/material' as mat;
+// @include mat.core();
 
 
-$x-ng-dnd-tool-primary: mat.define-palette(mat.$indigo-palette);
-$x-ng-dnd-tool-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// $x-ng-dnd-tool-primary: mat.define-palette(mat.$indigo-palette);
+// $x-ng-dnd-tool-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
-$x-ng-dnd-tool-warn: mat.define-palette(mat.$red-palette);
+// $x-ng-dnd-tool-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$x-ng-dnd-tool-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $x-ng-dnd-tool-primary,
-      accent: $x-ng-dnd-tool-accent,
-      warn: $x-ng-dnd-tool-warn,
-    ),
-    typography: mat.define-typography-config(),
-    density: 0,
-  )
-);
-@include mat.all-component-themes($x-ng-dnd-tool-theme);
-
-
-.main{
-  background:green;
-}
+// $x-ng-dnd-tool-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $x-ng-dnd-tool-primary,
+//       accent: $x-ng-dnd-tool-accent,
+//       warn: $x-ng-dnd-tool-warn,
+//     ),
+//     typography: mat.define-typography-config(),
+//     density: 0,
+//   )
+// );
+// @include mat.all-component-themes($x-ng-dnd-tool-theme);
